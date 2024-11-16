@@ -1,9 +1,9 @@
 def test_load():
   return 'loaded'
 
-def compute_probs(neg,pos):
-  p0 = neg/(neg+pos)
-  p1 = pos/(neg+pos)
+def compute_probs(x,y):
+  p0 = x/(x+y)
+  p1 = y/(x+y)
   return [p0,p1]
 
 def cond_prob(full_table, the_evidence_column, the_evidence_column_value, the_target_column, the_target_column_value):
