@@ -79,3 +79,22 @@ def metrics(zipped_list):
 
   #finally, return the dictionary
   return results 
+
+def run_random_forest(train, test, target, n):
+  #target is target column name
+  #n is number of trees to use
+
+  assert target in train   #have not dropped it yet
+  assert target in test
+
+  #your code below - copy, paste and align from above
+  clf = RandomForestClassifier(n_estimators=n, max_depth=2, random_state=0)   #clf stands for "classifier"
+  X = up_drop_column(train, target)
+  y = up_get_column(train,target)
+  assert isinstance(y,list)
+  assert len(y)==len(X)
+
+  clf.fit(X, y)
+
+
+  return metrics_table
