@@ -106,9 +106,9 @@ def try_archs(train_table, test_table, target_column_name, architectures, thresh
   for arch in architectures:
     probs = up_neural_net(train_table, test_table, arch, target_column_name)
     pos_probs = [pos for neg,pos in probs]
-    all_mets = []
 
     #loop through thresholds
+    all_mets = []
     for t in thresholds:
       predictions = [1 if pos>=t else 0 for pos in pos_probs]
       pred_act_list = up_zip_lists(predictions, up_get_column(test_table, target_column_name))
@@ -116,9 +116,9 @@ def try_archs(train_table, test_table, target_column_name, architectures, thresh
       mets['Threshold'] = t
       all_mets = all_mets + [mets]
 
-    arch_acc_dict[tuple(arch)] = max([m['Accuracy'] for m in all_mets])  #extra credit - uncomment if want to attempt
+    arch_acc_dict[tuple(arch)] = max([metd['Accuracy'] for metd in all_mets])  #extra credit - uncomment if want to attempt
 
-  print(f'Architecture: {arch}')
-  display(up_metrics_table(all_mets))
+    print(f'Architecture: {arch}')
+    display(up_metrics_table(all_mets))
 
   return arch_acc_dict
